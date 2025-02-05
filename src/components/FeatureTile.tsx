@@ -12,16 +12,13 @@ const FeatureTile = (f: Feature) => {
 
             <div key={f.id} className="flex justify-between cursor-pointer text-start">
 
-                <p onClick={() => {
-
-                    console.log(f.navigateTo);
+                <p className='w-max' onClick={() => {
 
                     navigate(f.navigateTo ?? "/")
 
                 }}>
                     {f.name}
                 </p>
-                <div></div>
                 {f.moreOptions &&
                     <button onClick={() => { setIsOpen(!isOpen) }}>{isOpen ? <KeyboardArrowUpOutlinedIcon /> : <KeyboardArrowDownRoundedIcon />}  </button>
                 }

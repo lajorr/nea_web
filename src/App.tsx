@@ -1,6 +1,10 @@
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom"
-import HomeLayout from "./layouts/HomeLayout"
 import RootLayout from "./layouts/RootLayout"
+import AddBranch from "./pages/admin/AddBranch"
+import AddDemandType from "./pages/admin/AddDemandType"
+import AddPaymentOption from "./pages/admin/AddPaymentOption"
+import AddRate from "./pages/admin/AddRate"
+import GenerateBills from "./pages/admin/GenerateBills"
 import Home from "./pages/Home"
 import Login from "./pages/Login"
 import Profile from "./pages/Profile"
@@ -14,11 +18,16 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />} >
-        <Route path="/h" element={<HomeLayout />}>
-          <Route index element={<Home />} />
-        </Route>
+        <Route index element={<Home />} />
+        {/* <Route path="/home" element={<HomeLayout />}>
+        </Route> */}
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/admin/manage_branch" element={<AddBranch />} />
+        <Route path="/admin/manage_bills" element={<GenerateBills />} />
+        <Route path="/admin/add_payment_option" element={<AddPaymentOption />} />
+        <Route path="/admin/add_demand_type" element={<AddDemandType />} />
+        <Route path="/admin/add_rate" element={<AddRate />} />
       </Route>
     )
   )

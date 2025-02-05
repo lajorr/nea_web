@@ -4,115 +4,61 @@ import { Feature } from "./models/Feature";
 export const adminFeatures: Feature[] = [
     {
         id: 1,
-        name: "My Profile",
-        navigateTo: "/profile",
+        name: "Generate bill",
+        navigateTo: "/admin/manage_bills",
         moreOptions: false,
         options: null
     },
     {
         id: 2,
-        name: "Manage Branch",
-        navigateTo: null,
+        name: "Add Branch",
+        navigateTo: "/admin/manage_branch",
         moreOptions: false,
         options: null
     },
     {
         id: 3,
-        name: "Manage Payments",
-        navigateTo: null,
+        name: "Add Payment Option",
+        navigateTo: "/admin/add_payment_option",
         moreOptions: false,
         options: null
     },
     {
         id: 4,
-        name: "Manage Consumer",
-        navigateTo: null,
+        name: "Add Demand Type",
+        navigateTo: "/admin/add_demand_type",   
         moreOptions: false,
         options: null
     },
     {
         id: 5,
-        name: "Manage Bills",
-        navigateTo: null,
+        name: "Add Rate",
+        navigateTo: "/admin/add_rate",
         moreOptions: false,
         options: null
     },
-    {
-        id: 6,
-        name: "Search",
-        navigateTo: null,
-        moreOptions: false,
-        options: null
-    },
-    {
-        id: 7,
-        name: "Reports",
-        navigateTo: null,
-        moreOptions: false,
-        options: null
-    },
-    {
-        id: 8,
-        name: "Support Center",
-        navigateTo: null,
-        moreOptions: false,
-        options: null
-    },
-    {
-        id: 9,
-        name: "No Light Contact",
-        navigateTo: null,
-        moreOptions: false,
-        options: null
-    },
+
 ]
 
 export const customerFeatures: Feature[] = [
     {
         id: 1,
-        name: "My Profile",
+        name: "My Bill",
         navigateTo: '/profile',
         moreOptions: false,
         options: null
     },
     {
         id: 2,
-        name: "My Previous Payments",
+        name: "My Payment History",
         navigateTo: null,
         moreOptions: false,
         options: null
-    },
-    {
-        id: 3,
-        name: "BY Bills",
-        navigateTo: null,
-        moreOptions: true,
-        options: [{
-            id: 4,
-            name: "Current Bill",
-            navigateTo: null,
-            moreOptions: false,
-            options: null
-        },
-        {
-            id: 5,
-            name: "Pending Bills",
-            navigateTo: null,
-            moreOptions: false,
-            options: null
-        },]
     },
 
     {
-        id: 6,
+        id: 3,
         name: "Support Center",
-        navigateTo: null,
-        moreOptions: false,
-        options: null
-    },
-    {
-        id: 7,
-        name: "No Light Contact",
         navigateTo: null,
         moreOptions: false,
         options: null

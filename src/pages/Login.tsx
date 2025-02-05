@@ -22,8 +22,6 @@ const Login = () => {
         const password2 = formData.get("password2") as string;
         const fullName = formData.get("full_name") as string;
 
-        console.log(fullName);
-
         if (isRegistered) {
             try {
                 const user = authenticateUser(userName.trim(), password.trim());
@@ -65,9 +63,9 @@ const Login = () => {
             </>}
             <button className="rounded-[4px] bg-blue-400 px-12 py-2 mt-6 text-white font-bold w-min">
                 {isRegistered ? "Login" : "Register"}</button>
-            <p className="text-[14px] text-center mt-4" >Already Have an account?<span className="font-[500] ml-2 underline cursor-pointer" onClick={() => {
+            <p className="text-[14px] text-center mt-4" >{isRegistered ? `Don't have an account?` : `Already Have an account?`}<span className="font-[500] ml-2 underline cursor-pointer" onClick={() => {
                 isRegistered ? setIsRegistered(false) : setIsRegistered(true)
-            }} >{isRegistered ? "Login" : "Sign in"}</span></p>
+            }} >{isRegistered ? "Sign up" : "Log in"}</span></p>
 
         </form >
     )
