@@ -11,6 +11,7 @@ import Home from "./pages/Home"
 import Login from "./pages/Login"
 import Profile from "./pages/Profile"
 import { AuthProvider } from "./provider/AuthContext"
+import { BranchProvider } from "./provider/BranchContext"
 
 
 
@@ -19,8 +20,6 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />} >
         <Route index element={<Home />} />
-        {/* <Route path="/home" element={<HomeLayout />}>
-        </Route> */}
         <Route path="/login" element={<Login />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/profile" element={<Profile />} />
@@ -39,7 +38,9 @@ function App() {
     <div className="max-w-[1440px] mx-auto" >
 
       <AuthProvider>
-        <RouterProvider router={router} ></RouterProvider>
+        <BranchProvider>
+          <RouterProvider router={router} ></RouterProvider>
+        </BranchProvider>
       </AuthProvider>
     </div >
   )
