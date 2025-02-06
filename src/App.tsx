@@ -1,4 +1,5 @@
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom"
+import { ProtectedRoute } from "./layouts/ProtectedRoute"
 import RootLayout from "./layouts/RootLayout"
 import AddBranch from "./pages/admin/AddBranch"
 import AddDemandType from "./pages/admin/AddDemandType"
@@ -14,22 +15,22 @@ import { AuthProvider } from "./provider/AuthContext"
 
 
 function App() {
-
-
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />} >
         <Route index element={<Home />} />
         {/* <Route path="/home" element={<HomeLayout />}>
         </Route> */}
-        <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/support" element={<SupportCenter />} />
-        <Route path="/admin/manage_branch" element={<AddBranch />} />
-        <Route path="/admin/manage_bills" element={<GenerateBills />} />
-        <Route path="/admin/add_payment_option" element={<AddPaymentOption />} />
-        <Route path="/admin/add_demand_type" element={<AddDemandType />} />
-        <Route path="/admin/add_rate" element={<AddRate />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/support" element={<SupportCenter />} />
+          <Route path="/admin/manage_branch" element={<AddBranch />} />
+          <Route path="/admin/manage_bills" element={<GenerateBills />} />
+          <Route path="/admin/add_payment_option" element={<AddPaymentOption />} />
+          <Route path="/admin/add_demand_type" element={<AddDemandType />} />
+          <Route path="/admin/add_rate" element={<AddRate />} />
+        </Route>
       </Route>
     )
   )

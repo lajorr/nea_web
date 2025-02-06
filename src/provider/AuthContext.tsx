@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { UserType } from "../utils/enums";
 
 export interface User {
@@ -20,13 +20,25 @@ type AuthContextType = {
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null)
 
+
+  const [user, setUser] = useState<User | null>(null)
+  useEffect(() => {
+    const localUser = localStorage.getItem('user')
+    if (localUser) {
+      // setUser(JSON.parse(localUser))
+      const user = JSON.parse(localUser) as User;
+      setUser(user)
+    }
+
+  }, [])
   const setContextUser = (user: User) => {
+    localStorage.setItem('user', JSON.stringify(user))
     setUser(user)
   }
   const logoutUser = () => {
     setUser(null)
+    localStorage.clear()
   }
   return (
     <AuthContext.Provider value={{ user: user, setContextUser: setContextUser, logoutUser: logoutUser, isAuthenticated: user !== null }}> {children}</AuthContext.Provider>
