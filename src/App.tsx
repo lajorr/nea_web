@@ -5,6 +5,7 @@ import AddDemandType from "./pages/admin/AddDemandType"
 import AddPaymentOption from "./pages/admin/AddPaymentOption"
 import AddRate from "./pages/admin/AddRate"
 import GenerateBills from "./pages/admin/GenerateBills"
+import SupportCenter from "./pages/customer/SupportCenter"
 import Home from "./pages/Home"
 import Login from "./pages/Login"
 import Profile from "./pages/Profile"
@@ -23,6 +24,7 @@ function App() {
         </Route> */}
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/support" element={<SupportCenter />} />
         <Route path="/admin/manage_branch" element={<AddBranch />} />
         <Route path="/admin/manage_bills" element={<GenerateBills />} />
         <Route path="/admin/add_payment_option" element={<AddPaymentOption />} />

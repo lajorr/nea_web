@@ -59,7 +59,7 @@ export const customerFeatures: Feature[] = [
     {
         id: 3,
         name: "Support Center",
-        navigateTo: null,
+        navigateTo: "/support",
         moreOptions: false,
         options: null
     },
