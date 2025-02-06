@@ -12,6 +12,7 @@ import Login from "./pages/Login"
 import Profile from "./pages/Profile"
 import { AuthProvider } from "./provider/AuthContext"
 import { BranchProvider } from "./provider/BranchContext"
+import { DemandTypeProvider } from "./provider/DemandTypeContext"
 
 
 
@@ -39,7 +40,9 @@ function App() {
 
       <AuthProvider>
         <BranchProvider>
-          <RouterProvider router={router} ></RouterProvider>
+          <DemandTypeProvider>
+            <RouterProvider router={router} ></RouterProvider>
+          </DemandTypeProvider>
         </BranchProvider>
       </AuthProvider>
     </div >
