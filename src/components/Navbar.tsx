@@ -20,7 +20,7 @@ const Navbar = () => {
                         navigate('/login')
                     }} >Login</button>
                 }
-                {user && <p className='text-lg font-[500] ' >Hello, {user.fullName}</p>}
+                {user && <p className='text-lg font-[500] ' >Hello, {user.full_name}</p>}
             </div>
         </nav>
     )

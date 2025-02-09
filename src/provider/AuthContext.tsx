@@ -1,17 +1,13 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import { UserType } from "../utils/enums";
+import { loginWithUserNameAndPassword, registerUser } from "../services/Auth";
+import { User, UserRequest } from "../types/User";
 
-export interface User {
-  userId: string;
-  userName: string;
-  fullName: string;
-  password: string;
-  type: UserType;
-}
+
 
 type AuthContextType = {
   user: User | null;
-  setContextUser: (user: User) => void;
+  login: (username: string, password: string) => void;
+  register: (username: string, password: string, fullName: string, contact: string, address: string, branchId: number, demandTypeId: number) => void
   logoutUser: () => void;
   isAuthenticated: boolean
 }
@@ -32,7 +28,24 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
 
   }, [])
-  const setContextUser = (user: User) => {
+  const login = async (username: string, password: string) => {
+    const user = await loginWithUserNameAndPassword(username, password);
+
+    localStorage.setItem('user', JSON.stringify(user))
+    setUser(user)
+  }
+  const register = async (username: string, password: string, fullName: string, contact: string, address: string, branchId: number, demandTypeId: number) => {
+
+    const data: UserRequest = {
+      username: username,
+      password: password,
+      full_name: fullName,
+      contact: contact,
+      address: address,
+      branch_id: branchId,
+      demand_type_id: demandTypeId
+    }
+    const user = await registerUser(data);
     localStorage.setItem('user', JSON.stringify(user))
     setUser(user)
   }
@@ -41,7 +54,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.clear()
   }
   return (
-    <AuthContext.Provider value={{ user: user, setContextUser: setContextUser, logoutUser: logoutUser, isAuthenticated: user !== null }}> {children}</AuthContext.Provider>
+    <AuthContext.Provider value={{
+      user: user,
+      login,
+      logoutUser: logoutUser,
+      isAuthenticated: user !== null,
+      register
+    }}> {children}</AuthContext.Provider>
   )
 }
 

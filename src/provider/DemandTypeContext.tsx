@@ -1,13 +1,17 @@
-import { createContext, ReactNode, useContext } from "react";
-import { addDemandType } from "../services/DemandType";
+import { createContext, ReactNode, useContext, useState } from "react";
+import { DemandType } from "../models/DemandType";
+import { addDemandType, getAllDemandTypes } from "../services/DemandType";
 
 interface DemandTypeState {
-    addNewDemandType: (demandTypeName: string) => void;
+    addNewDemandType: (demandTypeName: string) => void
+    fetchDemandTypes: () => {}
+    demandTypes: DemandType[]
 }
 
 const DemandTypeContext = createContext<DemandTypeState | undefined>(undefined);
 
 export const DemandTypeProvider = ({ children }: { children: ReactNode }) => {
+    const [demandTypes, setDemandTypes] = useState<DemandType[]>([]);
 
     const addNewDemandType = async (demandTypeName: string) => {
         await addDemandType({
@@ -15,8 +19,13 @@ export const DemandTypeProvider = ({ children }: { children: ReactNode }) => {
         });
     }
 
+    const fetchDemandTypes = async () => {
+        const allDemandTypes = await getAllDemandTypes()
+        setDemandTypes(allDemandTypes);
+    }
+
     return (
-        <DemandTypeContext.Provider value={{ addNewDemandType }}>
+        <DemandTypeContext.Provider value={{ addNewDemandType, fetchDemandTypes, demandTypes }}>
             {children}
         </DemandTypeContext.Provider>
     );

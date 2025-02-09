@@ -14,6 +14,7 @@ import { AuthProvider } from "./provider/AuthContext"
 import { BranchProvider } from "./provider/BranchContext"
 import { DemandTypeProvider } from "./provider/DemandTypeContext"
 import { PaymentOptionProvider } from "./provider/PaymentOptionContext"
+import { RateProvider } from "./provider/RateContext"
 
 
 
@@ -43,8 +44,10 @@ function App() {
         <BranchProvider>
           <DemandTypeProvider>
             <PaymentOptionProvider>
-              <RouterProvider router={router} ></RouterProvider>
-          </PaymentOptionProvider>
+              <RateProvider>
+                <RouterProvider router={router} ></RouterProvider>
+              </RateProvider>
+            </PaymentOptionProvider>
           </DemandTypeProvider>
         </BranchProvider>
       </AuthProvider>

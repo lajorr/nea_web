@@ -1,45 +1,45 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MyInputField from "../components/MyInputField";
 import { useAuthContext } from "../provider/AuthContext";
-import { authenticateUser, registerUser } from "../utils/auth";
-
-
-
+import { useBranchContext } from "../provider/BranchContext";
+import { useDemandTypeContext } from "../provider/DemandTypeContext";
 
 const Login = () => {
     const [isRegistered, setIsRegistered] = useState(true);
 
-
     const authContext = useAuthContext()
+    const branchContext = useBranchContext();
+    const demandContext = useDemandTypeContext();
+
     const navigate = useNavigate();
+
+    useEffect(() => {
+        branchContext.fetchBranches();
+        demandContext.fetchDemandTypes();
+    }, [])
+
+    const allBranches = branchContext.branches
+    const allDemandTypes = demandContext.demandTypes
+
 
     const handleLogin = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
         const userName = formData.get("user_name") as string;
         const password = formData.get("password") as string;
-        const password2 = formData.get("password2") as string;
         const fullName = formData.get("full_name") as string;
+        const contact = formData.get("contact") as string;
+        const address = formData.get("address") as string;
+        const branchId = formData.get("branchId") as string;
+        const demandTypeId = formData.get("demandTypeId") as string;
 
         if (isRegistered) {
-            try {
-                const user = authenticateUser(userName.trim(), password.trim());
-                authContext.setContextUser(user);
-                navigate("/");
-            } catch (error: any) {
-                alert(error.message);
-                return;
-
-            }
+            authContext.login(userName, password)
         } else {
-            try {
-                registerUser(userName.trim(), fullName.trim(), password.trim(), password2.trim());
-            } catch (error: any) {
-                alert(error.message);
-                return
-            }
+            authContext.register(userName, password, fullName, contact, address, Number(branchId), Number(demandTypeId));
         }
+        navigate("/");
     }
 
     return (
@@ -56,7 +56,24 @@ const Login = () => {
                     <MyInputField fieldName="Username" placeHolder="John Doe" name="user_name" type="text" />
                     <MyInputField fieldName="Full name" placeHolder="John Doe" name="full_name" type="text" />
                     <MyInputField fieldName="Password" placeHolder="password" name="password" type="password" />
-                    <MyInputField fieldName="Confirm Password" placeHolder="password" name="password2" type="password" />
+                    <MyInputField fieldName="Contact" placeHolder="981xxxxxxxx" name="contact" type="number" />
+                    <MyInputField fieldName="Address" placeHolder="Nepal" name="address" type="text" />
+                    <select name="branchId" defaultValue="none" className="text-[16px]  border border-black/30 rounded-[4px] px-4 py-2 w-[300px]">
+                        <option value="none" disabled>Select Branch</option>
+                        {allBranches.map(branch => (
+                            <option key={branch.id} value={branch.id}>
+                                {branch.name}
+                            </option>
+                        ))}
+                    </select>
+                    <select name="demandTypeId" defaultValue="none" className="text-[16px]  border border-black/30 rounded-[4px] px-4 py-2 w-[300px]">
+                        <option value="none" disabled>Select Demand Type</option>
+                        {allDemandTypes.map(demandType => (
+                            <option key={demandType.id} value={demandType.id}>
+                                {demandType.type}
+                            </option>
+                        ))}
+                    </select>
 
                 </div>
 

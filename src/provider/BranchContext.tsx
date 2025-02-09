@@ -1,8 +1,11 @@
-import { createContext, ReactNode, useContext } from "react";
-import { addBranch } from "../services/Branch";
+import { createContext, ReactNode, useContext, useState } from "react";
+import { Branch } from "../models/Branch";
+import { addBranch, getAllBranches } from "../services/Branch";
 
 type BrandState = {
     addNewBranch: (brandName: string) => void,
+    fetchBranches: () => void,
+    branches: Branch[],
 }
 
 
@@ -10,6 +13,7 @@ const BranchContext = createContext<BrandState | undefined>(undefined)
 
 
 export const BranchProvider = ({ children }: { children: ReactNode }) => {
+    const [branches, setBranches] = useState<Branch[]>([])
 
     const addNewBranch = async (brandName: string) => {
         await addBranch({
@@ -17,7 +21,12 @@ export const BranchProvider = ({ children }: { children: ReactNode }) => {
         })
     }
 
-    return <BranchContext.Provider value={{ addNewBranch }}>
+    const fetchBranches = async () => {
+        const allBranches = await getAllBranches()
+        setBranches(allBranches)
+    }
+
+    return <BranchContext.Provider value={{ addNewBranch, fetchBranches, branches }}>
         {children}
     </BranchContext.Provider>
 }

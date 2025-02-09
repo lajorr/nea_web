@@ -1,4 +1,4 @@
-import { BranchRequest } from "../models/Branch";
+import { Branch, BranchRequest } from "../models/Branch";
 import { api } from "../utils/api";
 
 export const addBranch = async (branchName: BranchRequest) => {
@@ -10,3 +10,14 @@ export const addBranch = async (branchName: BranchRequest) => {
         throw error
     }
 }
+
+export const getAllBranches = async () => {
+    try {
+        const response = await api().get<Branch[]>("/branch");
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+
