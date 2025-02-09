@@ -1,5 +1,10 @@
 
 export enum UserType {
-    admin,
-    customer,
+    admin = "admin",
+    customer = "customer",
+}
+
+export enum PaymentStatus{
+    pending = "Pending",
+    paid = "Paid"
 }

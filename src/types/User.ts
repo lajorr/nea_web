@@ -5,7 +5,7 @@ export type User = {
     username: string;
     full_name: string;
     password: string;
-    type?: UserType;
+    user_role: UserType;
     contact: string,
     address: string,
     branch_id: number,

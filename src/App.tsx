@@ -11,6 +11,7 @@ import Home from "./pages/Home"
 import Login from "./pages/Login"
 import Profile from "./pages/Profile"
 import { AuthProvider } from "./provider/AuthContext"
+import { BillProvider } from "./provider/BillContext"
 import { BranchProvider } from "./provider/BranchContext"
 import { DemandTypeProvider } from "./provider/DemandTypeContext"
 import { PaymentOptionProvider } from "./provider/PaymentOptionContext"
@@ -45,7 +46,9 @@ function App() {
           <DemandTypeProvider>
             <PaymentOptionProvider>
               <RateProvider>
-                <RouterProvider router={router} ></RouterProvider>
+                <BillProvider>
+                  <RouterProvider router={router} ></RouterProvider>
+                </BillProvider>
               </RateProvider>
             </PaymentOptionProvider>
           </DemandTypeProvider>

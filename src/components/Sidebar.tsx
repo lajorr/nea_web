@@ -10,7 +10,7 @@ const Sidebar = () => {
     const user = authContext.user;
     const navigate = useNavigate()
 
-    const features = user?.type === UserType.admin ? adminFeatures : customerFeatures
+    const features = user?.user_role === UserType.admin ? adminFeatures : customerFeatures
 
 
     return (
