@@ -1,4 +1,4 @@
-import { DemandType, DemandTypeRequest } from "../models/DemandType";
+import { DemandType, DemandTypeRequest } from "../types/DemandType";
 import { api } from "../utils/api";
 
 export const addDemandType = async (demandType: DemandTypeRequest) => {

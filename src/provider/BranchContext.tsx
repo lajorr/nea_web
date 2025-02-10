@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from "react";
-import { Branch } from "../models/Branch";
 import { addBranch, getAllBranches } from "../services/Branch";
+import { Branch } from "../types/Branch";
 
 type BrandState = {
     addNewBranch: (brandName: string) => void,

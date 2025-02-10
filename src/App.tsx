@@ -6,10 +6,10 @@ import AddDemandType from "./pages/admin/AddDemandType"
 import AddPaymentOption from "./pages/admin/AddPaymentOption"
 import AddRate from "./pages/admin/AddRate"
 import GenerateBills from "./pages/admin/GenerateBills"
+import { CustomerBills } from "./pages/customer/CustomerBills"
 import SupportCenter from "./pages/customer/SupportCenter"
 import Home from "./pages/Home"
 import Login from "./pages/Login"
-import Profile from "./pages/Profile"
 import { AuthProvider } from "./provider/AuthContext"
 import { BillProvider } from "./provider/BillContext"
 import { BranchProvider } from "./provider/BranchContext"
@@ -26,7 +26,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route element={<ProtectedRoute />}>
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/my_bills" element={<CustomerBills />} />
           <Route path="/support" element={<SupportCenter />} />
           <Route path="/admin/manage_branch" element={<AddBranch />} />
           <Route path="/admin/manage_bills" element={<GenerateBills />} />

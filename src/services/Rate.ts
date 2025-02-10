@@ -1,4 +1,4 @@
-import { RateRequest } from "../models/Rate";
+import { RateRequest } from "../types/Rate";
 import { api } from "../utils/api";
 
 export const addRate = async (rate: RateRequest) => {

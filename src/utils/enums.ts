@@ -1,7 +1,7 @@
 
 export enum UserType {
     admin = "admin",
-    customer = "customer",
+    customer = "user",
 }
 
 export enum PaymentStatus{

@@ -1,4 +1,4 @@
-import { PaymentOptionRequest } from "../models/PaymentOption";
+import { PaymentOptionRequest } from "../types/PaymentOption";
 import { api } from "../utils/api";
 
 export const addPaymentOption = async (paymentOption: PaymentOptionRequest) => {

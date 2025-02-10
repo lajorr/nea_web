@@ -1,9 +1,10 @@
-import { BillRequest } from "../models/Bill";
+import { Bill, BillRequest } from "../types/Bill";
 import { api } from "../utils/api";
 
 export const getBillByCustomerId = async (id: number) => {
     try {
-        const response = await api().get(`/bill/customer/${id}`);
+        const response = await api().get<Bill[]>(`/bill/customer/${id}`);
+        console.log("service ",response.data); 
         return response.data;
     } catch (error) {
         console.error(error);

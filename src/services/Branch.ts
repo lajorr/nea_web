@@ -1,4 +1,4 @@
-import { Branch, BranchRequest } from "../models/Branch";
+import { Branch, BranchRequest } from "../types/Branch";
 import { api } from "../utils/api";
 
 export const addBranch = async (branchName: BranchRequest) => {

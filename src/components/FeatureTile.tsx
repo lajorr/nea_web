@@ -2,7 +2,7 @@ import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownR
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Feature } from "../models/Feature";
+import { Feature } from "../types/Feature";
 
 const FeatureTile = (f: Feature) => {
     const navigate = useNavigate();

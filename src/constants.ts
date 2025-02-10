@@ -1,4 +1,4 @@
-import { Feature } from "./models/Feature";
+import { Feature } from "./types/Feature";
 
 
 export const adminFeatures: Feature[] = [
@@ -26,7 +26,7 @@ export const adminFeatures: Feature[] = [
     {
         id: 4,
         name: "Add Demand Type",
-        navigateTo: "/admin/add_demand_type",   
+        navigateTo: "/admin/add_demand_type",
         moreOptions: false,
         options: null
     },
@@ -43,8 +43,8 @@ export const adminFeatures: Feature[] = [
 export const customerFeatures: Feature[] = [
     {
         id: 1,
-        name: "My Bill",
-        navigateTo: '/profile',
+        name: "My Bills",
+        navigateTo: '/my_bills',
         moreOptions: false,
         options: null
     },
@@ -55,7 +55,6 @@ export const customerFeatures: Feature[] = [
         moreOptions: false,
         options: null
     },
-
     {
         id: 3,
         name: "Support Center",

@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { loginWithUserNameAndPassword, registerUser } from "../services/Auth";
 import { User, UserRequest } from "../types/User";
+import { UserType } from "../utils/enums";
 
 
 
@@ -43,7 +44,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       contact: contact,
       address: address,
       branch_id: branchId,
-      demand_type_id: demandTypeId
+      demand_type_id: demandTypeId,
+      user_role: UserType.customer
     }
     const user = await registerUser(data);
     localStorage.setItem('user', JSON.stringify(user))

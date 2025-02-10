@@ -1,7 +1,7 @@
 import { UserType } from "../utils/enums";
 
 export type User = {
-    id: string;
+    id: number;
     username: string;
     full_name: string;
     password: string;

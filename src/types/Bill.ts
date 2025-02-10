@@ -4,9 +4,8 @@ export type Bill = {
     issue_date: string,
     due_date: string,
     units_consumed: string,
-    fine: number,
-    discount: number,
+    amount: number,
     status: string,
 }
 
-export type BillRequest = Omit<Bill, "id" | "fine" | "discount" | "status">
+export type BillRequest = Omit<Bill, "id" | "amount" | "status">

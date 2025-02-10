@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from "react";
-import { DemandType } from "../models/DemandType";
 import { addDemandType, getAllDemandTypes } from "../services/DemandType";
+import { DemandType } from "../types/DemandType";
 
 interface DemandTypeState {
     addNewDemandType: (demandTypeName: string) => void

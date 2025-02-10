@@ -18,6 +18,8 @@ const GenerateBills = () => {
         e.currentTarget.reset();
     }
 
+
+
     return (
         <div className=" w-full">
             <div className="max-w-[600px] mx-auto ">

@@ -1,11 +1,12 @@
 import { createContext, ReactNode, useContext, useState } from "react";
-import { Bill, BillRequest } from "../models/Bill";
 import { createBill, getBillByCustomerId } from "../services/Bill";
+import { Bill, BillRequest } from "../types/Bill";
+import { User } from "../types/User";
 
 
 type BillState = {
     userBills: Bill[]
-    fetchUserBills: (customerId: number) => void
+    fetchUserBills: () => void
     generateBills: (customerId: number,
         issueDate: string,
         dueDate: string,
@@ -18,9 +19,13 @@ const BillContext = createContext<BillState | undefined>(undefined);
 export const BillProvider = ({ children }: { children: ReactNode }) => {
     const [userBills, setUserBills] = useState<Bill[]>([]);
 
-    const fetchUserBills = async (customerId: number) => {
-        const bills = await getBillByCustomerId(customerId);
-        setUserBills(bills);
+    const fetchUserBills = async () => {
+        const localUser = localStorage.getItem('user')
+        if (localUser) {
+            const user = JSON.parse(localUser) as User;
+            const bills = await getBillByCustomerId(user.id);
+            setUserBills(bills);
+        }
     };
 
     const generateBills = async (
