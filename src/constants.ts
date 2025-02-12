@@ -48,15 +48,9 @@ export const customerFeatures: Feature[] = [
         moreOptions: false,
         options: null
     },
+
     {
         id: 2,
-        name: "My Payment History",
-        navigateTo: null,
-        moreOptions: false,
-        options: null
-    },
-    {
-        id: 3,
         name: "Support Center",
         navigateTo: "/support",
         moreOptions: false,

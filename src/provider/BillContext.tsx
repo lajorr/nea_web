@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from "react";
-import { createBill, getBillByCustomerId } from "../services/Bill";
+import { createBill, getBillByCustomerId, payAndUpdateBill } from "../services/Bill";
 import { Bill, BillRequest } from "../types/Bill";
 import { User } from "../types/User";
 
@@ -11,6 +11,7 @@ type BillState = {
         issueDate: string,
         dueDate: string,
         unitsConsumed: string) => void
+    getRedirectUrlForPayment: (billId: number, amount: number) => Promise<string>
 };
 
 
@@ -43,11 +44,18 @@ export const BillProvider = ({ children }: { children: ReactNode }) => {
         await createBill(newBill);
     }
 
+    const getRedirectUrlForPayment = async (billId: number, amount: number) => {
+        const responseData = await payAndUpdateBill(amount, billId);
+        console.log("response data: ", responseData)
+        return responseData.url as string
+    }
+
     return (
         <BillContext.Provider value={{
             userBills,
             fetchUserBills,
-            generateBills
+            generateBills,
+            getRedirectUrlForPayment
         }}>
             {children}
         </BillContext.Provider>

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useBillContext } from "../../provider/BillContext";
+import { Bill } from "../../types/Bill";
 
 
 const CustomerBills = () => {
@@ -13,7 +14,15 @@ const CustomerBills = () => {
     }, [])
 
     const userBills = billContext.userBills
-    console.log("user", userBills)
+
+
+    const handlePayment = async (bill: Bill) => {
+        const url = await billContext.getRedirectUrlForPayment(bill.id, bill.amount);
+
+        window.location.href = url;
+
+    }
+
     return (
         <div className="w-full px-4 py-2">
             <h1 className="text-2xl font-bold text-center mb-4">Customer Bills</h1>
@@ -37,13 +46,13 @@ const CustomerBills = () => {
                                 <td className="pr-12 text-center py-4">{bill.due_date}</td>
                                 <td className="pr-12 text-center py-4">{bill.units_consumed}</td>
                                 <td className="pr-12 text-center py-4">{bill.amount}</td>
-                                <td className="pr-12 text-center py-4 font-bold" style={{ color: bill.status !== 'paid' ? '#22c55e' : 'red' }}>{bill.status}</td>
+                                <td className="pr-12 text-center py-4 font-bold" style={{ color: bill.status === 'Paid' ? '#22c55e' : 'red' }}>{bill.status}</td>
                                 <td>
                                     {bill.status === 'Pending' ?
 
-                                        (<button className="px-4 py-2 bg-blue-300 rounded-md mx-auto" >
+                                        (<button onClick={() => handlePayment(bill)} className="px-4 py-2 bg-blue-300 rounded-md mx-auto" >
                                             Pay Now
-                                        </button>) : <p className="text-green-500 font-bold">Paid</p>
+                                        </button>) : <p className="text-center font-bold">--</p>
                                     }
                                 </td>
                             </tr>
